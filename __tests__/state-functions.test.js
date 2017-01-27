@@ -1,23 +1,29 @@
-import { toggleDone, deleteTodo } from '../app/state-functions';
+/* eslint-env jest, jasmine */
 
-test('tooggleDone completes an incomplete todo', () => {
-  const startState = {
-    todos: [{ id: 1, done: false, text: 'Buy Milk' }]
-  };
+import { toggleDone, deleteTodo } from '../app/state-functions'
 
-  const finState = toggleDone(startState, 1);
+describe('tooggleDone completes an incomplete todo', () => {
+  it('completes an incomplete todo', () => {
+    const startState = {
+      todos: [{ id: 1, done: false, text: 'Buy Milk' }]
+    }
 
-  expect(finState.todos).toEqual([
-    { id: 1, done: true, text: 'Buy Milk' }
-  ]);
-});
+    const finState = toggleDone(startState, 1)
 
-test('deleteTodo deletes the todo it is given', () => {
-  const startState = {
-    todos: [{ id: 1, done: false, text: 'Buy Milk' }]
-  };
+    expect(finState.todos).toEqual([
+      { id: 1, done: true, text: 'Buy Milk' }
+    ])
+  })
+})
 
-  const finState = deleteTodo(startState, 1);
+describe('deleteTodo deletes the todo it is given', () => {
+  it('deletes the todo it is given', () => {
+    const startState = {
+      todos: [{ id: 1, done: false, text: 'Buy Milk' }]
+    }
 
-  expect(finState.todos).toEqual([]);
-});
+    const finState = deleteTodo(startState, 1)
+
+    expect(finState.todos).toEqual([])
+  })
+})
